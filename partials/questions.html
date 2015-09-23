@@ -1,11 +1,20 @@
+<div ng-controller ="QuestionsCtrl">
+  <form class="form-inline" role="form">
+    <div class="form-group" ng-show="questions.length">
+      <input ng-model="query" type="text" class="form-control" placeholder="Search Questions">
+    </div>
+  </form>
 
-  <div ng-show="questions.length">
-    <h1>Questions:</h1>
-    <ul>
-      <li ng-repeat="item in questions">
-        <a ui-sref="questions.answers({ questionId: item.id })">{{ item.title }}</a>
-      </li>
-    </ul>
+  <div class="page-header">
+    <h1 ng-show="questions.length && filtered.length">Questions</h1>
+    <h1 ng-show="questions.length && !filtered.length">no show</h1>
+
+      <ul>
+        <li ng-repeat="item in filtered = ( questions | filter:query)">
+          <a ui-sref="questions.answers({ questionId: item.id })">{{ item.title }}</a>
+        </li>
+      </ul>
+    </div>
   </div>
 
   <div class="col-md-4">
@@ -17,4 +26,5 @@
         <button type="submit" class="btn btn-primary">Ask</button>
       </form>
   </div>
+</div>
 <div ui-view></div>

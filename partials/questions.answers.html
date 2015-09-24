@@ -9,9 +9,9 @@
 
 <div>
   <h2>Add a answer to {{ question.title }}</h2>
-  <form ng-submit="AnswersFactory.addAnswer()" class="form-inline" role="form">
+  <form ng-submit="addAnswer()" class="form-inline" role="form">
     <div class="form-group">
-      <input type="text" ng-model="AnswersFactory.answerContent" class="form-control" placeholder="Enter an answer">
+      <input type="text" ng-model="answerContent" class="form-control" placeholder="Enter an answer">
     </div>
       <button type="submit" class="btn btn-primary">Answer</button>
   </form>
@@ -22,7 +22,7 @@
     <h2>Pending Approval</h2>
     <ul>
       <li ng-repeat="item in answersWithoutApproval = (answers | filter:{approvalNote:false})">
-        {{ item.content }} <a ng-click="addAnswerWithApprovalNote(item)"> - approved -</a>
+        {{ item.content }} <a ng-click="addAnswerWithApprovalNote(item)"> - approve? -</a>
       </li>
     </ul>
   </div>
@@ -30,7 +30,7 @@
     <h3>With Approval</h3>
     <ul>
       <li ng-repeat="item in answersWithApproval = (answers | filter:{approvalNote: true}) | orderBy: '-upvotes'">
-        <span class="glyphicon glyphicon-thumbs-up" ng-click="AnswersFactory.incrementUpvotes(item)"></span>
+        <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(item)"></span>
         {{ item.content }} - upvotes: {{ item.upvotes }}
       </li>
     </ul>

@@ -1,7 +1,10 @@
-askExperts.controller('AnswersCtrl', function AnswersCtrl($scope, $stateParams, QuestionsFactory, AnswersFactory, UtilitiesFactory) {
+askExperts.controller('AnswersCtrl', function AnswersCtrl($scope, $stateParams, QuestionsFactory, UtilitiesFactory) {
   $scope.question = UtilitiesFactory.findById(QuestionsFactory.questions, $stateParams.questionId)
-
-  $scope.answers = AnswersFactory.answers;
-  $scope.AnswersFactory = AnswersFactory;
-
+  $scope.addAnswer = function() {
+    $scope.question.answers.push({ content: $scope.answerContent, upvotes: 0, approvalNote: false });
+    $scope.answerContent = null;
+    };
+  $scope.incrementUpvotes = function(answer) {
+    answer.upvotes += 1;
+  };
 });

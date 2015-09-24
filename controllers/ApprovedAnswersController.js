@@ -1,5 +1,5 @@
-askExperts.controller("ApprovedAnswersCtrl", function ApprovedAnswersCtrl($scope, AnswersFactory) {
-    $scope.asnwers = AnswersFactory.answers;
+askExperts.controller("ApprovedAnswersCtrl", function ApprovedAnswersCtrl($scope, QuestionsFactory) {
+    $scope.answers = QuestionsFactory.answers;
     $scope.addAnswerWithApprovalNote = function(answer) {
       answer.approvalNote = true;
     };
